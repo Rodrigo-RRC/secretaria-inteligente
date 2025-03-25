@@ -1,145 +1,147 @@
-# 🤖 Secretaria Inteligente no WhatsApp (via IA)
+---
+title: Secretária Inteligente
+description: Agente virtual com IA para agendamento de consultas via WhatsApp e SMS, com integração ao Google Sheets e Google Agenda.
+---
 
-Este projeto é uma aplicação real de Inteligência Artificial com automação no WhatsApp. Ele simula uma **secretária virtual inteligente**, ideal para profissionais autônomos como médicos, dentistas, optometristas, terapeutas e outros que precisam organizar consultas, enviar mensagens automáticas e reduzir faltas — **sem depender de servidores pagos**.
+# 🤖 Secretária Inteligente para Profissionais da Saúde
+
+Este projeto apresenta uma **secretária virtual automatizada**, com **IA integrada ao WhatsApp**. Ela realiza agendamentos, envia mensagens automáticas e registra os dados do paciente — tudo sem depender de servidores pagos.
 
 ---
 
-## 🚀 Funcionalidades da Secretaria Inteligente
+## 🚀 O que esta solução faz?
 
-✅ Atendimento automático via WhatsApp  
-✅ Armazena dados em planilha (Google Sheets)  
-✅ Envia mensagens de confirmação via **WhatsApp e SMS**  
-✅ Cancela agendamentos automaticamente se o paciente não confirma  
-✅ Integração futura com **Google Agenda**
-
----
-
-## 🧰 Tecnologias Utilizadas
-
-- [FastAPI](https://fastapi.tiangolo.com/) — Criação da API em Python  
-- [Ngrok](https://ngrok.com/) — Geração de link público para testes  
-- [Google Sheets API](https://developers.google.com/sheets/api) — Registro de agendamentos  
-- [UltraMsg](https://ultramsg.com/) — Envio e recebimento de mensagens no WhatsApp  
-- [Twilio](https://www.twilio.com/) — Envio de SMS (futuramente)  
-- Hospedagem gratuita usando [AWS Free Tier (t2.micro)](https://aws.amazon.com/free/)
+- **Conversa com pacientes** via WhatsApp (e futuramente por SMS)
+- **Pergunta o melhor dia e horário** da consulta
+- **Verifica a disponibilidade**
+- **Oferece alternativas se não houver vaga**
+- **Confirma a consulta**
+- **Registra os dados em uma planilha (Google Sheets)**
+- **Agenda automaticamente no Google Agenda**
+- **Envia lembretes automáticos antes da consulta**
+- **Cancela a consulta automaticamente caso o paciente não confirme**
 
 ---
 
-## 📌 Como Funciona
+## ⚙️ Tecnologias Utilizadas
 
-1. O cliente envia uma mensagem no WhatsApp com solicitação de consulta  
-2. A IA entende a mensagem, responde automaticamente e registra os dados em uma planilha  
-3. O sistema envia uma **mensagem de confirmação automática** (WhatsApp ou SMS)  
-4. Se o cliente **não confirmar** até X horas antes da consulta, ela é cancelada  
-5. Agenda sincronizada (em desenvolvimento)
+- **FastAPI** – para criar a API
+- **ngrok** – para disponibilizar a API local na web
+- **Python** – lógica do agente
+- **Google Sheets + Google Agenda API** – armazenamento e agendamento
+- **UltraMsg (WhatsApp API)** – integração com o WhatsApp
+- **AWS EC2 (T2.micro)** – hospedagem gratuita por 12 meses
+- **Google Colab (alternativa gratuita)** – para testar a API
 
 ---
 
-## 🧠 Modelo de IA
+## 🧠 Exemplo de Conversa
 
-Utilizamos um modelo de linguagem (GPT-2 inicialmente) com memória contextual.  
-Nosso objetivo é migrar futuramente para modelos mais avançados ou personalizados.
+```text
+Paciente: Oi, queria marcar consulta
+Bot: Olá! Qual é o melhor dia e horário para você?
+Paciente: Quarta de manhã às 9h
+Bot: Um momento! Irei verificar a disponibilidade...
+
+# Se estiver disponível
+Bot: Perfeito! Consulta marcada para quarta-feira às 9h. Você receberá uma mensagem de confirmação.
+
+# Se NÃO estiver disponível
+Bot: Infelizmente esse horário está ocupado. Para quarta-feira tenho: 10h, 11h ou 14h.
+Bot: Nenhum desses horários serve para você? Posso verificar outro dia também.
+
+# Se o paciente recusar todos os horários
+Bot: Tudo bem. Qual outro dia e horário seria melhor para você?
+# Bot continua procurando até encontrar o horário mais próximo que atenda.
+
+# Após confirmação
+Bot: Ótimo! Você receberá um lembrete por WhatsApp e SMS.
+```
+
+---
+
+## ☁️ Fluxo do Projeto
+
+```mermaid
+graph TD
+A[Usuário envia mensagem] --> B[API FastAPI recebe via UltraMsg]
+B --> C[Lógica do Agente em Python]
+C --> D[Consulta à planilha Google Sheets]
+D --> E[Confirmação de horário]
+E --> F[Agendamento na Google Agenda]
+F --> G[Resposta via WhatsApp]
+F --> H[Disparo de SMS com lembrete]
+```
+
+---
+
+## ✅ Status Atual
+
+- [x] Projeto iniciado
+- [x] Primeira API funcionando no Colab
+- [x] Integração com UltraMsg testada com sucesso
+- [x] Roteiro de conversa estruturado
+- [x] Repositório no GitHub: [Rodrigo-RRC/secretaria-inteligente](https://github.com/Rodrigo-RRC/secretaria-inteligente)
 
 ---
 
 ## 📁 Estrutura do Projeto
 
 ```
-secretaria-inteligente/
+📦 secretaria-inteligente
 ├── app/
-│   ├── main.py         # Código principal com FastAPI
-│   ├── sheets.py       # Integração com Google Sheets
-│   └── whatsapp.py     # Conexão com UltraMsg (WhatsApp)
-├── requirements.txt    # Bibliotecas necessárias
+│   ├── main.py               # FastAPI com rotas
+│   ├── agente.py             # Lógica do agente
+│   └── agenda.py             # Conexão com Google Sheets e Agenda
+├── requirements.txt
 ├── README.md
-└── .env                # Variáveis de ambiente (tokens, senhas)
+└── .env (ou uso direto no Colab)
 ```
 
 ---
 
-## 🔐 Segurança
+## 🔑 Como Rodar
 
-- As chaves de API (UltraMsg, Google Sheets, Twilio) são armazenadas em `.env`
-- Recomendado uso de variáveis de ambiente também na AWS
+1. **Instalar dependências**
+   ```bash
+   pip install fastapi uvicorn openai gspread oauth2client
+   ```
 
----
+2. **Rodar a API local**
+   ```bash
+   uvicorn app.main:app --reload
+   ```
 
-## 💬 Exemplo de Conversa
+3. **Criar túnel com ngrok**
+   ```bash
+   ngrok http 8000
+   ```
 
-```
-Paciente: Oi, queria marcar consulta
-Bot: Olá! Qual é o melhor dia e horário para você?
-Paciente: Quarta de manhã
-Bot: Perfeito! Vamos registrar aqui. Você receberá uma mensagem de confirmação em breve.
-```
-
----
-
-## 📈 Diferenciais da Solução
-
-✨ Funciona sem servidor pago (Google Colab ou AWS Free Tier)  
-✨ Fácil de personalizar por profissional  
-✨ Simples de testar com Insomnia ou Postman  
-✨ Pronto para expandir com funcionalidades como lista de espera, reagendamento e muito mais!
+4. **Copiar o link HTTPS gerado e colar no UltraMsg**
 
 ---
 
-## 🎯 Público-Alvo
+## ⏭️ Próximas Etapas
 
-- Médicos e clínicas
-- Dentistas
-- Optometristas
-- Psicólogos
-- Qualquer profissional que agende atendimentos
-
----
-
-## 📌 Status
-
-🟢 **Em desenvolvimento ativo**  
-🎯 Versão 1: Atendimento + Armazenamento + Mensagens automáticas  
-🔜 Versão 2: Integração com Google Agenda + Histórico + Aprendizado
+- Integração com Google Agenda
+- Envio automático de SMS e lembretes personalizados
+- Confirmação de presença automática
+- Cancelamento de consulta por inatividade
+- Versão para nutricionistas, dentistas e optometristas
 
 ---
 
-## 🧑‍💻 Autor
+## 👨‍💻 Autor
 
 **Rodrigo Ribeiro Carvalho**  
-Corretor de imóveis e Analista de Dados em transição para IA aplicada no dia a dia  
-📍 João Pessoa – PB  
-[GitHub: Rodrigo-RRC](https://github.com/Rodrigo-RRC)  
-[LinkedIn: rodrigo-ribeiro-datascience](https://www.linkedin.com/in/rodrigo-ribeiro-datascience)  
-[WhatsApp](https://wa.me/5547991820339)
+GitHub: [Rodrigo-RRC](https://github.com/Rodrigo-RRC)  
+LinkedIn: [linkedin.com/in/rodrigo-ribeiro-datascience](https://linkedin.com/in/rodrigo-ribeiro-datascience)  
+WhatsApp: [Clique aqui para conversar](https://wa.me/5547991820339)
 
 ---
 
-## 📸 Demonstrações (futuras)
+## ✅ Licença
 
-Em breve: vídeos e imagens do agente funcionando no WhatsApp, conversando, agendando, enviando mensagens automáticas e respondendo em tempo real.
-
----
-
-## 🧩 Personalizações Futuras
-
-✅ Agendamento por horário fixo  
-✅ Respostas automáticas com imagens (ex: mapa da clínica)  
-✅ Diferentes tipos de secretária para cada especialidade  
-✅ Dashboard com painel dos agendamentos
+Este projeto é de uso livre e educacional. A comercialização só é permitida com autorização expressa do autor.
 
 ---
-
-## 🔗 Clonagem e Execução
-
-```bash
-git clone https://github.com/Rodrigo-RRC/secretaria-inteligente.git
-cd secretaria-inteligente
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
-
----
-
-## 📞 Vamos Conversar?
-
-Se quiser transformar sua ideia em um robô funcional que responde via WhatsApp, envia lembretes, confirma agendamentos e muito mais — **entre em contato!**
-
