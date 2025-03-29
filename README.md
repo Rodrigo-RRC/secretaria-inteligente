@@ -29,7 +29,7 @@ Este projeto apresenta uma **secretária virtual automatizada**, com **IA integr
 - **ngrok** – para disponibilizar a API local na web
 - **Python** – lógica do agente
 - **Google Sheets + Google Agenda API** – armazenamento e agendamento
-- **UltraMsg (WhatsApp API)** – integração com o WhatsApp
+- **UltraMsg (WhatsApp API)** – integração com o WhatsApp (em desenvolvimento)
 - **AWS EC2 (T2.micro)** – hospedagem gratuita por 12 meses
 
 ---
@@ -77,10 +77,12 @@ F --> H[Disparo de SMS com lembrete]
 ## ✅ Status Atual
 
 - [x] Projeto iniciado
-- [x] Primeira API funcionando na AWS
-- [ ] Integração com UltraMsg testada com sucesso
-- [ ] Roteiro de conversa estruturado
-- [x] Repositório no GitHub: [Rodrigo-RRC/secretaria-inteligente](https://github.com/Rodrigo-RRC/secretaria-inteligente)
+- [x] API FastAPI funcionando na AWS (porta 8000)
+- [ ] Integração com UltraMsg (em andamento)
+- [ ] Roteiro de conversa implementado
+- [ ] Integração com planilhas do Google
+- [ ] Integração com Google Agenda
+- [ ] Envio de lembrete por SMS
 
 ---
 
@@ -88,47 +90,39 @@ F --> H[Disparo de SMS com lembrete]
 
 ```
 📦 secretaria-inteligente
-├── app/
-│   ├── main.py               # FastAPI com rotas
-│   ├── agente.py             # Lógica do agente
-│   └── agenda.py             # Conexão com Google Sheets e Agenda
+├── main.py                    # FastAPI principal
+├── agente.py                 # (em breve) Lógica do agente
+├── agenda.py                 # (em breve) Integração com Google APIs
 ├── requirements.txt
-├── README.md
-└── .env (ou uso direto no Colab)
+└── .env (informações sensíveis – não versionar)
 ```
 
 ---
 
-## 🔑 Como Rodar
+## 🔧 Como Executar Localmente
 
-1. **Instalar dependências**
-   ```bash
-   pip install fastapi uvicorn openai gspread oauth2client
-   ```
+```bash
+# 1. Criar ambiente virtual (opcional, mas recomendado)
+python3 -m venv venv
+source venv/bin/activate
 
-2. **Rodar a API local**
-   ```bash
-   uvicorn app.main:app --reload
-   ```
+# 2. Instalar dependências
+pip install -r requirements.txt
 
-3. **Criar túnel com ngrok**
-   ```bash
-   ngrok http 8000
-   ```
-
-4. **Copiar o link HTTPS gerado e colar no UltraMsg**
+# 3. Executar o servidor FastAPI
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
 
 ---
 
 ## ⏭️ Próximas Etapas
 
-- Integração com UltraMsg
-- Estruturação completa do fluxo de conversa
-- Integração com Google Agenda
-- Envio automático de SMS e lembretes personalizados
-- Confirmação de presença automática
-- Cancelamento de consulta por inatividade
-- Versão para nutricionistas, dentistas e optometristas
+- Criar as rotas para interação com o paciente
+- Integrar UltraMsg para recebimento e envio via WhatsApp
+- Conectar à planilha do Google para armazenar os dados
+- Sincronizar com o Google Agenda
+- Adicionar envio automático de lembrete por SMS
+- Implementar roteiros personalizados para dentistas, nutricionistas etc.
 
 ---
 
@@ -144,5 +138,3 @@ WhatsApp: [Clique aqui para conversar](https://wa.me/5547991820339)
 ## ✅ Licença
 
 Este projeto é de uso livre e educacional. A comercialização só é permitida com autorização expressa do autor.
-
----
