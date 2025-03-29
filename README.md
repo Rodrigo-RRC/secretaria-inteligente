@@ -29,7 +29,7 @@ Este projeto apresenta uma **secretária virtual automatizada**, com **IA integr
 - **ngrok** – para disponibilizar a API local na web
 - **Python** – lógica do agente
 - **Google Sheets + Google Agenda API** – armazenamento e agendamento
-- **UltraMsg (WhatsApp API)** – integração com o WhatsApp *(em desenvolvimento)*
+- **UltraMsg (WhatsApp API)** – integração com o WhatsApp (em desenvolvimento)
 - **AWS EC2 (T2.micro)** – hospedagem gratuita por 12 meses
 
 ---
@@ -78,9 +78,9 @@ F --> H[Disparo de SMS com lembrete]
 
 - [x] Projeto iniciado
 - [x] API FastAPI funcionando na AWS (porta 8000)
-- [ ] Integração com UltraMsg *(em andamento)*
-- [ ] Roteiro de conversa implementado *(em progresso)*
-- [ ] Integração com planilhas do Google *(próximo passo)*
+- [ ] Integração com UltraMsg (em andamento)
+- [ ] Roteiro de conversa implementado
+- [ ] Integração com planilhas do Google
 - [ ] Integração com Google Agenda
 - [ ] Envio de lembrete por SMS
 
@@ -90,11 +90,11 @@ F --> H[Disparo de SMS com lembrete]
 
 ```
 📦 secretaria-inteligente
-🔗 main.py                    # FastAPI principal
-🔗 agente.py                 # (em breve) Lógica do agente
-🔗 agenda.py                 # (em breve) Integração com Google APIs
-🔗 requirements.txt
-🔗 .env                      # Informações sensíveis (não versionar)
+├── main.py                    # FastAPI principal
+├── agente.py                 # (em breve) Lógica do agente
+├── agenda.py                 # (em breve) Integração com Google APIs
+├── requirements.txt
+└── .env (informações sensíveis – não versionar)
 ```
 
 ---
@@ -126,7 +126,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 
 ---
 
-## 👨‍💼 Autor
+## 👨‍💻 Autor
 
 **Rodrigo Ribeiro Carvalho**  
 GitHub: [Rodrigo-RRC](https://github.com/Rodrigo-RRC)  
