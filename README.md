@@ -31,7 +31,6 @@ Este projeto apresenta uma **secretária virtual automatizada**, com **IA integr
 - **Google Sheets + Google Agenda API** – armazenamento e agendamento
 - **UltraMsg (WhatsApp API)** – integração com o WhatsApp
 - **AWS EC2 (T2.micro)** – hospedagem gratuita por 12 meses
-- **Google Colab (alternativa gratuita)** – para testar a API
 
 ---
 
@@ -78,9 +77,9 @@ F --> H[Disparo de SMS com lembrete]
 ## ✅ Status Atual
 
 - [x] Projeto iniciado
-- [x] Primeira API funcionando no Colab
-- [x] Integração com UltraMsg testada com sucesso
-- [x] Roteiro de conversa estruturado
+- [x] Primeira API funcionando na AWS
+- [ ] Integração com UltraMsg testada com sucesso
+- [ ] Roteiro de conversa estruturado
 - [x] Repositório no GitHub: [Rodrigo-RRC/secretaria-inteligente](https://github.com/Rodrigo-RRC/secretaria-inteligente)
 
 ---
@@ -123,6 +122,8 @@ F --> H[Disparo de SMS com lembrete]
 
 ## ⏭️ Próximas Etapas
 
+- Integração com UltraMsg
+- Estruturação completa do fluxo de conversa
 - Integração com Google Agenda
 - Envio automático de SMS e lembretes personalizados
 - Confirmação de presença automática
