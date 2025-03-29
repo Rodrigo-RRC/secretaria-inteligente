@@ -90,11 +90,11 @@ F --> H[Disparo de SMS com lembrete]
 
 ```
 📦 secretaria-inteligente
-├── main.py                    # FastAPI principal
-├── agente.py                 # (em breve) Lógica do agente
-├── agenda.py                 # (em breve) Integração com Google APIs
-├── requirements.txt
-└── .env (informações sensíveis – não versionar)
+├── app/
+│   ├── main.py               # FastAPI com rota inicial
+│   ├── agente.py             # (vazio por enquanto, será a lógica do agente)
+│   └── agenda.py             # (vazio por enquanto, integração Google)
+
 ```
 
 ---
