@@ -1,0 +1,66 @@
+EVOLUÇÃO DO PROJETO – SECRETÁRIA INTELIGENTE
+Rodrigo-RRC | Histórico completo do desenvolvimento até o momento
+
+===============================
+PASSO 1 – CRIAÇÃO DA INSTÂNCIA AWS
+===============================
+- Instância EC2 criada com sistema Ubuntu 22.04.
+- Portas 80 e 8000 liberadas no grupo de segurança.
+- Par de chaves criado (.pem convertido em .ppk para uso com PuTTY).
+
+===============================
+PASSO 2 – ACESSO REMOTO VIA PUTTY
+===============================
+- Conexão estabelecida com sucesso usando PuTTY.
+- Login feito como usuário 'ubuntu' com a chave .ppk.
+
+===============================
+PASSO 3 – CONFIGURAÇÃO DO AMBIENTE PYTHON
+===============================
+- Instalado Python 3 e pip.
+- Criado ambiente virtual com: python3 -m venv venv
+- Ativado com: source venv/bin/activate
+- Instalado FastAPI e Uvicorn com pip install
+
+===============================
+PASSO 4 – CRIAÇÃO DO ARQUIVO PRINCIPAL
+===============================
+- Criado main.py manualmente via terminal.
+- Código básico da FastAPI configurado com uma rota GET de teste.
+
+===============================
+PASSO 5 – EXECUÇÃO DO SERVIDOR COM UVICORN
+===============================
+- Rodado servidor com: uvicorn main:app --host 0.0.0.0 --port 8000
+- Testado com sucesso no navegador com IP público da instância.
+
+===============================
+PASSO 6 – TESTE DE ACESSO PÚBLICO
+===============================
+- Verificada a resposta da API pelo navegador e via terminal.
+- Confirmado funcionamento e resposta JSON {"mensagem": "API no ar"}
+
+===============================
+PASSO 7 – EXECUÇÃO EM SEGUNDO PLANO COM SCREEN
+===============================
+- Instalado o 'screen' via apt.
+- Criada sessão com: screen -S minha-api
+- API executada dentro do screen
+- Sessão minimizada com CTRL + A, depois D
+- Sessão retomada com: screen -r minha-api
+
+===============================
+PASSO 8 – ORGANIZAÇÃO DOS ARQUIVOS E DOCUMENTAÇÃO
+===============================
+- Criado arquivo COMANDOS_SECRETARIA_INTELIGENTE.txt com todos os comandos explicados.
+- Solicitado novo arquivo de histórico de evolução para controle pessoal do progresso.
+
+===============================
+PRÓXIMO PASSO (PASSO 9) – INTEGRAÇÃO COM ULTRAMSG
+===============================
+- Integrar FastAPI com o serviço de mensagens UltraMsg via Webhook
+- Receber e responder mensagens do WhatsApp
+- Registrar logs e mensagens recebidas no backend
+
+Rodrigo está conduzindo o projeto com comprometimento total.
+A cada etapa, está compreendendo a estrutura por trás de um agente inteligente funcional e vendável.
