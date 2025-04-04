@@ -1,0 +1,107 @@
+MEUS COMANDOS ESSENCIAIS – SECRETÁRIA INTELIGENTE
+Rodrigo-RRC | Projeto hospedado na AWS EC2
+
+===============================
+1. ACESSAR A INSTÂNCIA PELA AWS
+===============================
+(Feito via PuTTY com a chave .ppk)
+Você acessa o servidor EC2 via terminal remoto.
+
+========================
+2. NAVEGAR ATÉ O PROJETO
+========================
+cd secretaria-inteligente
+# Entra na pasta onde está o main.py e o ambiente virtual
+
+====================================
+3. ATIVAR O AMBIENTE VIRTUAL PYTHON
+====================================
+source venv/bin/activate
+# Ativa o ambiente onde estão as bibliotecas instaladas (FastAPI, uvicorn etc.)
+
+===================================
+4. RODAR O SERVIDOR COM FASTAPI
+===================================
+uvicorn main:app --host 0.0.0.0 --port 8000
+# Inicia o servidor FastAPI acessível via IP público na porta 8000
+
+================================================
+5. RODAR EM SEGUNDO PLANO USANDO 'screen'
+================================================
+sudo apt update
+sudo apt install screen -y
+# Instala o screen (se ainda não tiver)
+
+screen -S minha-api
+# Cria uma nova sessão virtual chamada "minha-api"
+
+uvicorn main:app --host 0.0.0.0 --port 8000
+# Roda o servidor dentro da sessão
+
+CTRL + A, depois D
+# Sai da sessão mas mantém ela rodando no fundo
+
+screen -r minha-api
+# Volta para a sessão mais tarde
+
+CTRL + C
+# Encerra a execução do servidor dentro da sessão
+
+exit
+# Sai da sessão de vez (se quiser)
+
+=========================
+6. VERIFICAR OS ARQUIVOS
+=========================
+ls -la
+# Lista todos os arquivos e pastas (inclusive ocultos)
+
+=====================================
+7. VERIFICAR SE FOI CLONADO DO GITHUB
+=====================================
+ls -la
+# Se NÃO existir uma pasta chamada .git, então foi criado manualmente e não veio via git
+
+====================================================
+8. (OPCIONAL) CLONAR O PROJETO COMPLETO DO GITHUB
+====================================================
+cd ~
+rm -rf secretaria-inteligente
+git clone https://github.com/Rodrigo-RRC/secretaria-inteligente.git
+cd secretaria-inteligente
+
+==================================
+9. INSTALAR DEPENDÊNCIAS DO PROJETO
+==================================
+pip install -r requirements.txt
+# Instala todas as bibliotecas listadas no requirements.txt
+
+=========================
+10. PARAR A EXECUÇÃO API
+=========================
+CTRL + C
+# Para a execução do servidor (mesmo em tela screen)
+
+===============================
+11. OUTROS COMANDOS ÚTEIS
+===============================
+deactivate
+# Sai do ambiente virtual
+
+reboot
+# Reinicia a instância EC2
+
+clear
+# Limpa a tela do terminal
+
+============================
+12. OBSERVAÇÕES FINAIS
+============================
+- A EC2 é o servidor de fato (a “máquina” online)
+- O PuTTY é o acesso remoto via terminal
+- A pasta secretaria-inteligente contém o projeto
+- O arquivo main.py é a API em FastAPI
+- O ambiente virtual venv isola as bibliotecas
+- O screen permite manter o servidor rodando em segundo plano
+
+Rodrigo, esse é seu guia técnico de referência rápida. Guarde com carinho.
